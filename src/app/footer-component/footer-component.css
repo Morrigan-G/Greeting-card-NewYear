@@ -1,0 +1,22 @@
+* {
+  margin: 20px;
+  padding: 0;
+  box-sizing: border-box;
+}
+.align {
+  margin: auto;
+  color: rgb(0, 0, 0);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.custom-button {
+  color: #ffffff;
+}
+::ng-deep .custom-button {
+  background-color: rgb(179, 131, 228);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 25px;
+}

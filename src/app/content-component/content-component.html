@@ -1,0 +1,165 @@
+<div
+  class="content-container"
+  [ngClass]="{
+    'selection-finished': navigationService.isSelectionFinished(),
+    'starry-sky': navigationService.getCurrentPageIndex() === 4
+  }"
+  [style.background]="getBackgroundStyle()"
+>
+  <!-- Страница 0 -->
+  <div *ngIf="navigationService.getCurrentPageIndex() === 0" class="page page-0">
+    <h1 class="title">{{ navigationService.getCurrentPage().title }}</h1>
+    <button mat-button class="continue-button" (click)="continue()">Продолжить</button>
+  </div>
+
+  <!-- Страница 1 -->
+  <div *ngIf="navigationService.getCurrentPageIndex() === 1" class="page page-1">
+    <div class="text-container">
+      <p *ngFor="let text of navigationService.getAllTexts()" class="text-line">{{ text }}</p>
+    </div>
+    <div class="buttons-container">
+      <button
+        mat-button
+        class="outline-button back-button"
+        *ngIf="navigationService.canGoBack()"
+        (click)="goBack()"
+      >
+        Назад
+      </button>
+      <button
+        mat-button
+        class="outline-button next-button"
+        *ngIf="navigationService.canGoNext()"
+        (click)="goNext()"
+      >
+        Дальше
+      </button>
+      <button
+        mat-button
+        class="continue-button-page1"
+        *ngIf="!navigationService.canGoNext()"
+        (click)="continue()"
+      >
+        Продолжить
+      </button>
+    </div>
+  </div>
+
+  <!-- Страница 2 -->
+  <div *ngIf="navigationService.getCurrentPageIndex() === 2" class="page page-2">
+    <h1 class="title">{{ navigationService.getCurrentPage().title }}</h1>
+    <button mat-button class="continue-button" (click)="continue()">Продолжить</button>
+  </div>
+
+  <!-- Страница 3 -->
+  <div *ngIf="navigationService.getCurrentPageIndex() === 3" class="page page-3">
+    <div class="images-section">
+      <div
+        class="images-grid"
+        [class.centered]="isFinalCentered"
+        [class.transitioning]="isTransitioningToCenter"
+      >
+        <div
+          *ngFor="let image of navigationService.getVisibleImages(); let i = index"
+          class="image-wrapper"
+          #tiles
+          [class.highlighted]="isHighlighted(i)"
+          [class.selected]="isSelected(i)"
+          [class.fade-out]="fadeOutOthers && !isSelected(i)"
+        >
+          <img [src]="image" class="card-image" />
+        </div>
+      </div>
+
+      <div class="final-actions" *ngIf="isFinalCentered && navigationService.isSelectionFinished()">
+        <button mat-button class="continue-button-final" (click)="continue()">Продолжить</button>
+      </div>
+    </div>
+
+    <!-- Кнопка добавления картинок -->
+    <button
+      mat-button
+      class="continue-button"
+      *ngIf="navigationService.canAddImage()"
+      (click)="addImage()"
+    >
+      Добавить картинку
+    </button>
+
+    <!-- Кнопка удачи -->
+    <button
+      mat-button
+      class="luck-button"
+      *ngIf="!fadeOutOthers && !navigationService.canAddImage()"
+      (click)="onContinueOrLuck()"
+    >
+      Испытать удачу
+    </button>
+  </div>
+
+  <!-- Страница 4: Звездное небо -->
+  <div *ngIf="navigationService.getCurrentPageIndex() === 4" class="page page-4">
+    <!-- Начальное поздравление - скрывается только после клика на звезду -->
+    <div class="starry-content" *ngIf="!starClicked">
+      <h1 class="starry-title">{{ navigationService.getCurrentPage().title }}</h1>
+      <p class="starry-message">Пусть этот год принесет вам счастье и удачу! ✨</p>
+    </div>
+
+    <!-- Кликабельная точка -->
+    <div class="star-point" *ngIf="showStarPoint && !starClicked" (click)="onStarClick()"></div>
+
+    <!-- Летящая и превращающаяся звезда -->
+    <div
+      class="flying-star"
+      *ngIf="starClicked"
+      [class.star-flying]="isFlying"
+      [class.star-final]="showFinalStar"
+    >
+      <svg viewBox="0 0 100 100" class="star-svg">
+        <!-- Реалистичная звезда (8 лучей) -->
+        <defs>
+          <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style="stop-color: #ffffff; stop-opacity: 1" />
+            <stop offset="50%" style="stop-color: #fffacd; stop-opacity: 0.8" />
+            <stop offset="100%" style="stop-color: #ffd700; stop-opacity: 0" />
+          </radialGradient>
+        </defs>
+
+        <!-- Центральное сияние -->
+        <circle
+          cx="50"
+          cy="50"
+          r="48"
+          fill="none"
+          stroke="rgba(255,255,255,0.3)"
+          stroke-width="2"
+        />
+
+        <!-- Основная звезда (8 лучей) -->
+        <path
+          d="M 50,10 L 55,45 L 90,50 L 55,55 L 50,90 L 45,55 L 10,50 L 45,45 Z"
+          fill="#ffffff"
+          stroke="#ffd700"
+          stroke-width="1"
+        />
+
+        <!-- Дополнительные лучи (диагонали) -->
+        <path
+          d="M 25,25 L 48,48 L 75,75 M 75,25 L 52,48 L 25,75"
+          stroke="#ffffff"
+          stroke-width="2"
+          opacity="0.8"
+        />
+
+        <!-- Центр звезды -->
+        <circle cx="50" cy="50" r="8" fill="#ffffff" />
+        <circle cx="50" cy="50" r="5" fill="#fffacd" />
+      </svg>
+    </div>
+
+    <!-- Новый текст после анимации -->
+    <div class="final-message" *ngIf="showFinalMessage">
+      <h1 class="final-title">Эта звезда с неба для тебя</h1>
+    </div>
+  </div>
+</div>
