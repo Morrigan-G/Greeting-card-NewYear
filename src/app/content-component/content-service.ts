@@ -43,10 +43,10 @@ private pages: Page[] = [
   {
     images: [
       'https://images.unsplash.com/photo-1589965716319-4a041b58fa8a?q=80&w=1374&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=400',
-      'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=400',
-      'https://images.unsplash.com/photo-1512909006721-3d6018887383?w=400',
-      'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400',
+      'https://images.unsplash.com/photo-1645536569897-565afe74ee02?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://plus.unsplash.com/premium_photo-1676823547752-1d24e8597047?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://cdn.27.ua/sc--media--prod/default/16/50/2c/16502c91-1d5c-4a47-a8d8-23d0337428c7.jpg',
+      'https://tarakan.org.ua/wp-content/uploads/2025/09/multipech-philips-na120-00-preimushhestva-modeli02tarakan.jpg',
       'https://images.unsplash.com/photo-1617331140180-e8262094733a?q=80&w=776&auto=format&fit=crop'
     ],
     backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
