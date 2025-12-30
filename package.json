@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "deploy": "ng build --configuration production --base-href 'https://Morrigan-G.github.io/Greeting-card-NewYear/' && npx angular-cli-ghpages --dir=dist/greeting-card/browser",
+    "deploy": "ng build --configuration production --base-href /Greeting-card-NewYear/ && npx angular-cli-ghpages --dir=dist/greeting-card/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:Greeting-card": "node dist/Greeting-card/server/server.mjs"

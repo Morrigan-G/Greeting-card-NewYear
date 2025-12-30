@@ -65,7 +65,7 @@ private pages: Page[] = [
     type: 'images'
   },
   {
-    title: 'Поздравляю!',
+    title: 'Ты сияешь также как эта звезда!',
     backgroundColor: '#000000', // Начальный черный фон
     type: 'title'
   }
