@@ -9,6 +9,7 @@
   <!-- Страница 0 -->
   <div *ngIf="navigationService.getCurrentPageIndex() === 0" class="page page-0">
     <h1 class="title">{{ navigationService.getCurrentPage().title }}</h1>
+
     <button mat-button class="continue-button" (click)="continue()">Продолжить</button>
   </div>
 
